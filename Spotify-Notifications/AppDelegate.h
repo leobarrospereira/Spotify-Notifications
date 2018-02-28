@@ -25,6 +25,7 @@
 @property (strong, nonatomic) IBOutlet NSMenuItem *openSpotifyMenuItem;
 @property (strong, nonatomic) IBOutlet NSMenuItem *openLastFMMenu;
 @property (strong, nonatomic) IBOutlet NSMenuItem *openPreferences;
+@property (strong, nonatomic) IBOutlet NSMenuItem *currentSongMenuItem;
 
 //Preferences
 @property (assign) IBOutlet NSWindow *prefsWindow;
@@ -38,6 +39,7 @@
 - (IBAction)showPreferences:(NSMenuItem*)sender;
 
 - (IBAction)toggleStartup:(NSButton *)sender;
+- (IBAction)toggleShowCurrentSongMenu:(NSButton *)sender;
 
 - (IBAction)showHome:(id)sender;
 - (IBAction)showSource:(id)sender;

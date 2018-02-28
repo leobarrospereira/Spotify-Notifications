@@ -11,6 +11,7 @@
 #define kNotificationSoundKey @"notificationSound"
 #define kNotificationIncludeAlbumArtKey @"includeAlbumArt"
 #define kDisableWhenSpotifyHasFocusKey @"disableWhenSpotifyHasFocus"
+#define kShowCurrentSongMenu @"showCurrentSongMenu"
 
 #define kLaunchAtLoginKey @"startupSelection"
 #define kIconSelectionKey @"iconSelection"

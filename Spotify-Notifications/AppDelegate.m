@@ -193,6 +193,7 @@
 
 - (void)notPlaying {
     _openSpotifyMenuItem.title = @"Open Spotify (Not Playing)";
+    [_currentSongMenuItem setHidden:YES];
     
     [NSUserNotificationCenter.defaultUserNotificationCenter removeAllDeliveredNotifications];
 }
@@ -208,7 +209,7 @@
     if (spotify.playerState == SpotifyEPlSPlaying) {
         
         _openSpotifyMenuItem.title = @"Open Spotify (Playing)";
-
+        
         if (!_openLastFMMenu.isEnabled && [currentTrack.artist isNotEqualTo:NULL])
             [_openLastFMMenu setEnabled:YES];
         
@@ -217,6 +218,8 @@
             previousTrack = currentTrack;
             currentTrack = spotify.currentTrack;
         }
+        
+        [self showCurrentSongMenuIfNeeded];
         
         NSUserNotification *userNotification = [self userNotificationForCurrentTrack];
         [self deliverUserNotification:userNotification Force:NO];
@@ -227,6 +230,15 @@
         [self notPlaying];
     }
 
+}
+
+- (void)showCurrentSongMenuIfNeeded {
+    if ([currentTrack.artist isNotEqualTo:NULL]
+        && [currentTrack.name isNotEqualTo:NULL]
+        && [NSUserDefaults.standardUserDefaults boolForKey:kShowCurrentSongMenu]) {
+        [_currentSongMenuItem setHidden:NO];
+        _currentSongMenuItem.title = [NSString stringWithFormat:@"%@ - %@", currentTrack.name, currentTrack.artist];
+    }
 }
 
 #pragma mark - Preferences
@@ -267,6 +279,16 @@
     BOOL launchAtLogin = sender.state;
     [NSUserDefaults.standardUserDefaults setBool:launchAtLogin forKey:kLaunchAtLoginKey];
     [LaunchAtLogin setAppIsLoginItem:launchAtLogin];
+}
+
+- (IBAction)toggleShowCurrentSongMenu:(NSButton *)sender {
+    BOOL showCurrentSongMenu = sender.state;
+    if (spotify.playerState == SpotifyEPlSPlaying && showCurrentSongMenu) {
+        [self showCurrentSongMenuIfNeeded];
+        
+    } else {
+        [_currentSongMenuItem setHidden:YES];
+    }
 }
 
 #pragma mark - Preferences Info Buttons

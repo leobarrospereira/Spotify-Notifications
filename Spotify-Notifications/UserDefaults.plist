@@ -18,5 +18,7 @@
 	<true/>
 	<key>iconSelection</key>
 	<integer>1</integer>
+	<key>showCurrentSongMenu</key>
+	<false/>
 </dict>
 </plist>

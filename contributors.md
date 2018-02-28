@@ -11,3 +11,4 @@
 - Jonathan Tien ([Jonathan Tien](https://github.com/ricefield/))
 - Randall Bruder ([randybruder](https://github.com/randybruder/))
 - Seb Jachec ([sebj](https://github.com/sebj))
+- Leonardo Barros ([leobarrospereira](https://github.com/leobarrospereira))
